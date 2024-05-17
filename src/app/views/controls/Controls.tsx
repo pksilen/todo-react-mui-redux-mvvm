@@ -16,9 +16,10 @@ import {
   activateLightMode,
   showTodosList,
   showTodosTable
-} from 'app/slices/controlsSlice';
-import { toggleShouldShowUndoneTodosOnly } from '../../slices/todos/todosSlice';
+} from 'app/models/controlsSlice';
+import { toggleShouldShowUndoneTodosOnly } from 'app/models/todos/todosSlice';
 import classes from './Controls.module.scss';
+
 
 type ViewMode = 'dark' | 'light';
 

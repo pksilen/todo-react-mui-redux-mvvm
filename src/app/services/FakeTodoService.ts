@@ -1,4 +1,4 @@
-import { Todo } from 'app/slices/todos/Todo';
+import { Todo } from 'app/models/todos/Todo';
 import { TodoService } from './TodoService';
 
 const isTest = window.location.href.includes('test');

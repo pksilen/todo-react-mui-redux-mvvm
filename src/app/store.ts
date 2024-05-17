@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { controlsReducer } from './slices/controlsSlice';
-import { todosReducer } from './slices/todos/todosSlice';
+import { controlsReducer } from './models/controlsSlice';
+import { todosReducer } from './models/todos/todosSlice';
 
 export const store = configureStore({
   reducer: {

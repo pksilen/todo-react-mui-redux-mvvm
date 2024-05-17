@@ -1,13 +1,13 @@
 /* eslint-disable testing-library/no-unnecessary-act */
 import { act, render, screen } from '@testing-library/react';
 import user from '@testing-library/user-event';
-import { addTodo } from 'app/slices/todos/todosSlice';
-import { store } from '../../store';
+import { addTodo } from 'app/models/todos/todosSlice';
+import { store } from 'app/store';
 import { AddTodo } from './AddTodo';
 
 
 jest.mock('../../store');
-jest.mock('../../slices/todos/actions/addTodo');
+jest.mock('../../models/todos/actions/addTodo');
 
 describe('AddTodo', () => {
   it('renders input for todo title and button for adding todo', () => {

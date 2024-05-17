@@ -3,7 +3,7 @@ import { ErrorBoundary as ReactErrorBoundary } from 'react-error-boundary';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from 'app/common/components/buttons/Button';
 import { Heading3 } from 'app/common/components/typography/Heading3';
-import { clearError } from 'app/slices/todos/todosSlice';
+import { clearError } from 'app/models/todos/todosSlice';
 import { AppState } from 'app/store';
 import classes from './ErrorBoundary.module.scss';
 

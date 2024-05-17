@@ -1,5 +1,5 @@
 import ApiError from 'app/common/errors/ApiError';
-import { Todo } from 'app/slices/todos/Todo';
+import { Todo } from 'app/models/todos/Todo';
 import { TodoService } from './TodoService';
 
 export const BASE_URL = 'http://localhost:8080/todos';

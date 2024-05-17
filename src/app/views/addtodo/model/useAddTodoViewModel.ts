@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addTodo } from 'app/slices/todos/todosSlice';
+import { addTodo } from 'app/models/todos/todosSlice';
 
-export const useTodoAdding = () => {
+export const useAddTodoViewModel = () => {
   const [todoTitle, setTodoTitle] = useState('');
   const dispatch = useDispatch();
 

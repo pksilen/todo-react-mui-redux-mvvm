@@ -5,47 +5,35 @@ import { EditTextInput } from 'app/common/components/inputs/EditTextInput';
 import { ListItem } from 'app/common/components/list/ListItem';
 import { ListItemIcon } from 'app/common/components/list/ListItemIcon';
 import { ListItemText } from 'app/common/components/list/ListItemText';
-import { Todo } from '../../../slices/todos/Todo';
-import { removeTodo, setEditableTodo, toggleTodoDone } from '../../../slices/todos/todosSlice';
+import { Todo } from 'app/models/todos/Todo';
 import classes from './TodoListItem.module.scss';
-import { useTodo } from './useTodo';
+import { useTodoViewModel } from './model/useTodoViewModel';
+
 
 type Props = {
   readonly todo: Todo;
 };
 
 export const TodoListItem = ({ todo: { id, title, isDone } }: Props) => {
-  const { dispatch, editableTodoId, editTodoTitle } = useTodo(id);
+  const vm = useTodoViewModel(id);
   const titleClasses = classNames(classes.title, isDone && classes.isDone);
 
   return (
     <ListItem className={classes.todo}>
       <ListItemIcon icon={<TodoIcon color={isDone ? 'success' : 'error'} />} />
-      {editableTodoId === id ? (
-        <EditTextInput aria-label="Edit todo" onEditComplete={editTodoTitle} text={title} />
+      {vm.editableTodoId === id ? (
+        <EditTextInput aria-label="Edit todo" onEditComplete={vm.editTodoTitle} text={title} />
       ) : (
-        <ListItemText
-          className={titleClasses}
-          onDoubleClick={() => dispatch(setEditableTodo(id))}
-          text={title}
-        />
+        <ListItemText className={titleClasses} onDoubleClick={vm.setEditableTodo} text={title} />
       )}
       <div className={classes.buttons}>
         <IconOrButton
           icon={<CheckIcon />}
-          onClick={() => dispatch(toggleTodoDone(id))}
+          onClick={vm.toggleTodoDone}
           text={isDone ? 'Mark undone' : 'Mark done'}
         />
-        <IconOrButton
-          icon={<EditIcon />}
-          onClick={() => dispatch(setEditableTodo(id))}
-          text="Edit"
-        />
-        <IconOrButton
-          icon={<RemoveIcon />}
-          onClick={() => dispatch(removeTodo(id))}
-          text="Remove"
-        />
+        <IconOrButton icon={<EditIcon />} onClick={vm.setEditableTodo} text="Edit" />
+        <IconOrButton icon={<RemoveIcon />} onClick={vm.removeTodo} text="Remove" />
       </div>
     </ListItem>
   );
