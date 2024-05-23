@@ -11,7 +11,7 @@ type Props = Readonly<{
 export const EditTextInput = ({ onEditComplete, text, ...restOfProps }: Props) => {
   const [editedText, setEditedText] = useState(text);
 
-  const handleInputKeyDown = (event: KeyboardEvent) => {
+  const handleKeyDown = (event: KeyboardEvent) => {
     if (event.key === 'Escape') {
       onEditComplete(text);
     } else if (event.key === 'Enter') {
@@ -25,7 +25,7 @@ export const EditTextInput = ({ onEditComplete, text, ...restOfProps }: Props) =
       className={classes.titleInput}
       inputProps={{
         onBlur: () => onEditComplete(editedText),
-        onKeyDown: handleInputKeyDown,
+        onKeyDown: handleKeyDown,
         ...restOfProps
       }}
       onChange={(event) => setEditedText(event.target.value)}
