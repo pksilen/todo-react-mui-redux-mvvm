@@ -21,7 +21,7 @@ export const TodoListItem = ({ todo: { id, title, isDone } }: Props) => {
   return (
     <ListItem className={classes.todo}>
       <ListItemIcon icon={<TodoIcon color={isDone ? 'success' : 'error'} />} />
-      {vm.editableTodoId === id ? (
+      {vm.isEditable ? (
         <EditTextInput aria-label="Edit todo" onEditComplete={vm.editTodoTitle} text={title} />
       ) : (
         <ListItemText className={titleClasses} onDoubleClick={vm.setEditableTodo} text={title} />

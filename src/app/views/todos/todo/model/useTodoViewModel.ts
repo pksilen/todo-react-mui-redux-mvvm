@@ -12,8 +12,8 @@ export const useTodoViewModel = (id: string) => {
   };
 
   return {
-    editableTodoId,
     editTodoTitle,
+    isEditable: editableTodoId === id,
     removeTodo: () => dispatch(removeTodo(id)),
     setEditableTodo: () => dispatch(setEditableTodo(id)),
     toggleTodoDone: () => dispatch(toggleTodoDone(id))
