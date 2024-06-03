@@ -12,12 +12,12 @@ export const useTodoViewModel = (id: string) => {
   const editableTodoId = useSelector((state: AppState) => state.todos.editableTodoId);
   const dispatch = useDispatch();
 
-  const editTitle = (title: string) => {
+  const changeTitle = (title: string) => {
     dispatch(changeTodoTitle({ id, title }));
   };
 
   return {
-    editTitle,
+    changeTitle,
     isEditable: editableTodoId === id,
     remove: () => dispatch(removeTodo(id)),
     setAsEditable: () => dispatch(setTodoAsEditable(id)),
