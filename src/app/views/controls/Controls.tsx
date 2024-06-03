@@ -1,4 +1,3 @@
-import { useDispatch } from 'react-redux';
 import {
   IconRadioButtonGroup,
   IconRadioButtonProps
@@ -10,31 +9,26 @@ import {
   TableIcon
 } from 'app/common/components/icons/Icons';
 import { Switch } from 'app/common/components/inputs/Switch';
-import {
-  ViewType,
-  activateDarkMode,
-  activateLightMode,
-  showTodosList,
-  showTodosTable
-} from 'app/models/controlsSlice';
+import { ViewType } from 'app/models/controls/controlsSlice';
 import { toggleShouldShowUndoneTodosOnly } from 'app/models/todos/todosSlice';
 import classes from './Controls.module.scss';
+import { useControlsViewModel } from './model/useControlsViewModel';
 
 
 type ViewMode = 'dark' | 'light';
 
 export const Controls = () => {
-  const dispatch = useDispatch();
+  const vm = useControlsViewModel();
 
   const viewTypeButtons: IconRadioButtonProps<ViewType>[] = [
     {
       icon: <ListIcon />,
-      onClick: () => dispatch(showTodosList()),
+      onClick: () => vm.setViewType('list'),
       value: 'list'
     },
     {
       icon: <TableIcon />,
-      onClick: () => dispatch(showTodosTable()),
+      onClick: () => vm.setViewType('table'),
       value: 'table'
     }
   ];
@@ -42,12 +36,12 @@ export const Controls = () => {
   const viewModeButtons: IconRadioButtonProps<ViewMode>[] = [
     {
       icon: <LightModeIcon />,
-      onClick: () => dispatch(activateLightMode()),
+      onClick: () => vm.setViewMode('light'),
       value: 'light'
     },
     {
       icon: <DarkModeIcon />,
-      onClick: () => dispatch(activateDarkMode()),
+      onClick: () => vm.setViewMode('dark'),
       value: 'dark'
     }
   ];
@@ -55,10 +49,7 @@ export const Controls = () => {
   return (
     <section className={classes.controls}>
       <IconRadioButtonGroup buttons={viewTypeButtons} initialValue="list" />
-      <Switch
-        label="Show undone only"
-        onClick={() => dispatch(toggleShouldShowUndoneTodosOnly())}
-      />
+      <Switch label="Show undone only" onClick={toggleShouldShowUndoneTodosOnly} />
       <IconRadioButtonGroup buttons={viewModeButtons} initialValue="dark" />
     </section>
   );
